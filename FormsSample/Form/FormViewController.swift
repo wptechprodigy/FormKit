@@ -27,7 +27,12 @@ final class TargetAction {
     }
 }
 
-func hotspotForm(state: Hotspot) -> ([Section], strongReferences: [Any], update: (Hotspot) -> Void) {
+struct Observer {
+    var strongReferences: [Any]
+    var update: (Hotspot) -> Void
+}
+
+func hotspotForm(state: Hotspot, change: @escaping ((inout Hotspot) -> Void) -> Void) -> ([Section], Observer) {
     var strongReferences: [Any] = []
     var updates: [(Hotspot) -> Void] = []
     
@@ -39,8 +44,7 @@ func hotspotForm(state: Hotspot) -> ([Section], strongReferences: [Any], update:
     toggle.translatesAutoresizingMaskIntoConstraints = false
     
     let toggleTarget = TargetAction {
-        // TODO: - Handle toggle change
-        // state.isEnabled = toggle.isOn
+        change { $0.isEnabled = toggle.isOn }
     }
     strongReferences.append(toggleTarget)
     updates.append { state in
@@ -85,8 +89,7 @@ func hotspotForm(state: Hotspot) -> ([Section], strongReferences: [Any], update:
     
     return (
         [toggleSection, Section(cells: [passwordCell], footerTitle: nil)],
-        strongReferences,
-        { state in
+        Observer(strongReferences: strongReferences) { state in
             for u in updates {
                 u(state)
             }

@@ -14,20 +14,23 @@ class FormDriver {
     
     var formViewController: FormViewController!
     var sections: [Section] = []
-    var strongReferences: [Any]
-    var update: (Hotspot) -> Void
+    var observer: Observer!
     var state = Hotspot() {
         didSet {
-            update(state)
+            observer.update(state)
             formViewController.reloadSectionFooters()
         }
     }
-    
+
     // MARK: - Initializer
     
-    init(initial state: Hotspot, build: (Hotspot) -> ([Section], strongReferences: [Any], update: (Hotspot) -> Void)) {
+    init(initial state: Hotspot, build: (Hotspot, @escaping ((inout Hotspot) -> Void) -> Void) -> ([Section], Observer)) {
         self.state = state
-        (sections, strongReferences, update) = build(state)
+        let (sections, observer) = build(state, { [unowned self] f in
+            f(&self.state)
+        })
+        self.sections = sections
+        self.observer = observer
         formViewController = FormViewController(
             sections: sections,
             title: "Personal Hotspot Settings")
