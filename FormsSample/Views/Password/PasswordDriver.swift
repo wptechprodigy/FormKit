@@ -12,30 +12,26 @@ class PasswordDriver {
     
     // MARK: - Properties
     
-    let formViewController: FormViewController!
     let textField = UITextField()
-    var sections: [Section] = []
     let onChange: (String) -> ()
+    var formViewController: FormViewController!
+    var sections: [Section] = []
     
     // MARK: - Initializers
     
     init(password: String, onChange: @escaping (String) -> ()) {
         self.onChange = onChange
-        textField.text = password
-        formViewController = FormViewController(
-            sections: sections,
-            title: "Hotspot Password")
         buildSections()
+        self.formViewController = FormViewController(
+            sections: sections,
+            title: "Hotspot Password",
+            firstResponder: textField)
+        textField.text = password
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        textField.becomeFirstResponder()
-//    }
     
     // MARK: - Helpers
     
-    private func buildSections() {
+    func buildSections() {
         let cell = FormCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Password"
         cell.contentView.addSubview(textField)

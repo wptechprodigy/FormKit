@@ -13,10 +13,12 @@ class FormViewController: UITableViewController {
     // MARK: - Properties
     
     var sections: [Section] = []
+    var firstResponder: UIResponder?
     
     // MARK: - Initializers
     
-    init(sections: [Section], title: String) {
+    init(sections: [Section], title: String, firstResponder: UIResponder? = nil) {
+        self.firstResponder = firstResponder
         self.sections = sections
         super.init(style: .grouped)
         navigationItem.title = title
@@ -30,6 +32,11 @@ class FormViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        firstResponder?.becomeFirstResponder()
     }
     
     // MARK: - Helpers
