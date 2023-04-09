@@ -58,12 +58,15 @@ class HotspotDriver {
         passwordCell.accessoryType = .disclosureIndicator
         passwordCell.shouldHighlight = true
         
-        let passwordVC = PasswordViewController(password: state.password) { [unowned self] in
+        let passwordDriver = PasswordDriver(password: state.password) { [unowned self] in
             self.state.password = $0
         }
         
         passwordCell.didSelect = { [unowned self] in
-            formViewController.show(passwordVC, sender: self)
+            formViewController
+                .show(
+                    passwordDriver.formViewController, 
+                    sender: self)
         }
         
         sections = [

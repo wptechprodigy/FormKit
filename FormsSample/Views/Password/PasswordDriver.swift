@@ -1,5 +1,5 @@
 //
-//  PasswordViewController.swift
+//  PasswordDriver.swift
 //  FormsSample
 //
 //  Created by waheedCodes on 08/04/2023.
@@ -8,35 +8,35 @@
 
 import UIKit
 
-class PasswordViewController: UITableViewController {
+class PasswordDriver {
+    
+    // MARK: - Properties
+    
+    let formViewController: FormViewController!
     let textField = UITextField()
+    var sections: [Section] = []
     let onChange: (String) -> ()
+    
+    // MARK: - Initializers
+    
     init(password: String, onChange: @escaping (String) -> ()) {
         self.onChange = onChange
-        super.init(style: .grouped)
         textField.text = password
+        formViewController = FormViewController(
+            sections: sections,
+            title: "Hotspot Password")
+        buildSections()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        textField.becomeFirstResponder()
+//    }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "Hotspot Password"
-    }
+    // MARK: - Helpers
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        textField.becomeFirstResponder()
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private func buildSections() {
+        let cell = FormCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = "Password"
         cell.contentView.addSubview(textField)
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,10 @@ class PasswordViewController: UITableViewController {
         ])
         textField.addTarget(self, action: #selector(editingEnded(_:)), for: .editingDidEnd)
         textField.addTarget(self, action: #selector(editingDidEnter(_:)), for: .editingDidEndOnExit)
-        return cell
+        
+        sections = [
+            Section(cells: [cell], footerTitle: nil)
+        ]
     }
     
     @objc func editingEnded(_ sender: Any) {
@@ -56,6 +59,8 @@ class PasswordViewController: UITableViewController {
     
     @objc func editingDidEnter(_ sender: Any) {
         onChange(textField.text ?? "")
-        navigationController?.popViewController(animated: true)
+        formViewController
+            .navigationController?
+            .popViewController(animated: true)
     }
 }

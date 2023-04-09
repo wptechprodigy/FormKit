@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04F0A3A429E1E2BD00A4F1A4 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */; };
+		04F0A3A429E1E2BD00A4F1A4 /* PasswordDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A329E1E2BD00A4F1A4 /* PasswordDriver.swift */; };
 		04F0A3A629E290D100A4F1A4 /* Hotspot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A529E290D100A4F1A4 /* Hotspot.swift */; };
 		04F0A3A829E2913C00A4F1A4 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A729E2913C00A4F1A4 /* Section.swift */; };
 		04F0A3AA29E2917300A4F1A4 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A929E2917300A4F1A4 /* FormCell.swift */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		04F0A3A329E1E2BD00A4F1A4 /* PasswordDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordDriver.swift; sourceTree = "<group>"; };
 		04F0A3A529E290D100A4F1A4 /* Hotspot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotspot.swift; sourceTree = "<group>"; };
 		04F0A3A729E2913C00A4F1A4 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		04F0A3A929E2917300A4F1A4 /* FormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		04F0A3B129E2A72F00A4F1A4 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */,
+				04F0A3A329E1E2BD00A4F1A4 /* PasswordDriver.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 				04F0A3AE29E2A06D00A4F1A4 /* HotspotDriver.swift in Sources */,
 				04F0A3A629E290D100A4F1A4 /* Hotspot.swift in Sources */,
 				8348889D2063B908000114E0 /* AppDelegate.swift in Sources */,
-				04F0A3A429E1E2BD00A4F1A4 /* PasswordViewController.swift in Sources */,
+				04F0A3A429E1E2BD00A4F1A4 /* PasswordDriver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
