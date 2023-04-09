@@ -17,19 +17,26 @@ class SettingsViewController: UITableViewController {
     var state = Hotspot() {
         didSet {
             print(state)
-            UIView.setAnimationsEnabled(false)
-            tableView.beginUpdates()
-            
-            let footer = tableView.footerView(forSection: 0)
-            footer?.textLabel?.text = tableView(tableView, titleForFooterInSection: 0)
-            footer?.setNeedsLayout()
-            
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 1))
-            cell?.detailTextLabel?.text = state.password
-            
-            tableView.endUpdates()
-            UIView.setAnimationsEnabled(true)
+            sections[0].footerTitle = state.enabledSectionFooterTitle
+            sections[1].cells[0].detailTextLabel?.text = state.password
+            reloadSectionFooters()
         }
+    }
+    
+    // MARK: - Helpers
+    
+    private func reloadSectionFooters() {
+        UIView.setAnimationsEnabled(false)
+        tableView.beginUpdates()
+        
+        for index in sections.indices {
+            let footer = tableView.footerView(forSection: index)
+            footer?.textLabel?.text = tableView(tableView, titleForFooterInSection: index)
+            footer?.setNeedsLayout()
+        }
+        
+        tableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
     }
     
     // MARK: - Initializers

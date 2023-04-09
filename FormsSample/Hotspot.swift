@@ -14,7 +14,7 @@ struct Hotspot {
 }
 
 extension Hotspot {
-    var enabledSectionTitle: String? {
+    var enabledSectionFooterTitle: String? {
         return isEnabled ? "Personal Hotspot Enabled" : nil
     }
 }
