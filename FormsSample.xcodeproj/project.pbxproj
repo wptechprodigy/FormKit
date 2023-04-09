@@ -61,6 +61,40 @@
 			path = Form;
 			sourceTree = "<group>";
 		};
+		04F0A3AF29E2A70500A4F1A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04F0A3B129E2A72F00A4F1A4 /* Password */,
+				04F0A3B029E2A72400A4F1A4 /* Hotspot */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04F0A3B029E2A72400A4F1A4 /* Hotspot */ = {
+			isa = PBXGroup;
+			children = (
+				04F0A3A529E290D100A4F1A4 /* Hotspot.swift */,
+				04F0A3AD29E2A06D00A4F1A4 /* HotspotDriver.swift */,
+			);
+			path = Hotspot;
+			sourceTree = "<group>";
+		};
+		04F0A3B129E2A72F00A4F1A4 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		04F0A3B229E2A74700A4F1A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				834888A32063B908000114E0 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		834888902063B908000114E0 = {
 			isa = PBXGroup;
 			children = (
@@ -82,12 +116,10 @@
 			children = (
 				04F0A3AB29E29FC900A4F1A4 /* Application Delegate */,
 				04F0A3AC29E29FEA00A4F1A4 /* Form */,
-				04F0A3A529E290D100A4F1A4 /* Hotspot.swift */,
-				04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */,
-				834888A32063B908000114E0 /* Assets.xcassets */,
+				04F0A3AF29E2A70500A4F1A4 /* Views */,
+				04F0A3B229E2A74700A4F1A4 /* Resources */,
 				834888A52063B908000114E0 /* LaunchScreen.storyboard */,
 				834888A82063B909000114E0 /* Info.plist */,
-				04F0A3AD29E2A06D00A4F1A4 /* HotspotDriver.swift */,
 			);
 			path = FormsSample;
 			sourceTree = "<group>";
