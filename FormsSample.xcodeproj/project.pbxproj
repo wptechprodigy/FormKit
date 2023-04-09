@@ -11,8 +11,9 @@
 		04F0A3A629E290D100A4F1A4 /* Hotspot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A529E290D100A4F1A4 /* Hotspot.swift */; };
 		04F0A3A829E2913C00A4F1A4 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A729E2913C00A4F1A4 /* Section.swift */; };
 		04F0A3AA29E2917300A4F1A4 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3A929E2917300A4F1A4 /* FormCell.swift */; };
+		04F0A3AE29E2A06D00A4F1A4 /* HotspotDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0A3AD29E2A06D00A4F1A4 /* HotspotDriver.swift */; };
 		8348889D2063B908000114E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8348889C2063B908000114E0 /* AppDelegate.swift */; };
-		8348889F2063B908000114E0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8348889E2063B908000114E0 /* SettingsViewController.swift */; };
+		8348889F2063B908000114E0 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8348889E2063B908000114E0 /* FormViewController.swift */; };
 		834888A42063B908000114E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 834888A32063B908000114E0 /* Assets.xcassets */; };
 		834888A72063B908000114E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834888A52063B908000114E0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -22,9 +23,10 @@
 		04F0A3A529E290D100A4F1A4 /* Hotspot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotspot.swift; sourceTree = "<group>"; };
 		04F0A3A729E2913C00A4F1A4 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		04F0A3A929E2917300A4F1A4 /* FormCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
+		04F0A3AD29E2A06D00A4F1A4 /* HotspotDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotspotDriver.swift; sourceTree = "<group>"; };
 		834888992063B908000114E0 /* FormsSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormsSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8348889C2063B908000114E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8348889E2063B908000114E0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8348889E2063B908000114E0 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		834888A32063B908000114E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		834888A62063B908000114E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		834888A82063B909000114E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,6 +43,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04F0A3AB29E29FC900A4F1A4 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8348889C2063B908000114E0 /* AppDelegate.swift */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		04F0A3AC29E29FEA00A4F1A4 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				8348889E2063B908000114E0 /* FormViewController.swift */,
+				04F0A3A729E2913C00A4F1A4 /* Section.swift */,
+				04F0A3A929E2917300A4F1A4 /* FormCell.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		834888902063B908000114E0 = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +80,14 @@
 		8348889B2063B908000114E0 /* FormsSample */ = {
 			isa = PBXGroup;
 			children = (
-				8348889C2063B908000114E0 /* AppDelegate.swift */,
-				8348889E2063B908000114E0 /* SettingsViewController.swift */,
-				04F0A3A729E2913C00A4F1A4 /* Section.swift */,
-				04F0A3A929E2917300A4F1A4 /* FormCell.swift */,
+				04F0A3AB29E29FC900A4F1A4 /* Application Delegate */,
+				04F0A3AC29E29FEA00A4F1A4 /* Form */,
 				04F0A3A529E290D100A4F1A4 /* Hotspot.swift */,
 				04F0A3A329E1E2BD00A4F1A4 /* PasswordViewController.swift */,
 				834888A32063B908000114E0 /* Assets.xcassets */,
 				834888A52063B908000114E0 /* LaunchScreen.storyboard */,
 				834888A82063B909000114E0 /* Info.plist */,
+				04F0A3AD29E2A06D00A4F1A4 /* HotspotDriver.swift */,
 			);
 			path = FormsSample;
 			sourceTree = "<group>";
@@ -148,7 +167,8 @@
 			files = (
 				04F0A3A829E2913C00A4F1A4 /* Section.swift in Sources */,
 				04F0A3AA29E2917300A4F1A4 /* FormCell.swift in Sources */,
-				8348889F2063B908000114E0 /* SettingsViewController.swift in Sources */,
+				8348889F2063B908000114E0 /* FormViewController.swift in Sources */,
+				04F0A3AE29E2A06D00A4F1A4 /* HotspotDriver.swift in Sources */,
 				04F0A3A629E290D100A4F1A4 /* Hotspot.swift in Sources */,
 				8348889D2063B908000114E0 /* AppDelegate.swift in Sources */,
 				04F0A3A429E1E2BD00A4F1A4 /* PasswordViewController.swift in Sources */,

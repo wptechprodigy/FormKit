@@ -13,13 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let navigationController = UINavigationController()
+    let driver = HotspotDriver()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.frame = UIScreen.main.bounds
         window?.rootViewController = navigationController
         navigationController.viewControllers = [
-            SettingsViewController()
+            driver.formViewController
         ]
         window?.makeKeyAndVisible()
         return true

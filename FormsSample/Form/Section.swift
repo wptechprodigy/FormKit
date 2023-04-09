@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct Section {
-    var cells: [FormCell]
+class Section {
+    let cells: [FormCell]
     var footerTitle: String?
+    
+    init(cells: [FormCell], footerTitle: String? = nil) {
+        self.cells = cells
+        self.footerTitle = footerTitle
+    }
 }
