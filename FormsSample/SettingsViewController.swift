@@ -10,6 +10,10 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
+    // MARK: - Properties
+    
+    var sections: [Section] = []
+    var toggle = UISwitch()
     var state = Hotspot() {
         didSet {
             print(state)
@@ -28,6 +32,8 @@ class SettingsViewController: UITableViewController {
         }
     }
     
+    // MARK: - Initializers
+    
     init() {
         super.init(style: .grouped)
     }
@@ -36,10 +42,14 @@ class SettingsViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Settings"
     }
+    
+    // MARK: - TableView DataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -48,8 +58,6 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
-    var toggle = UISwitch()
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -75,15 +83,17 @@ class SettingsViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.section != 0
-    }
-    
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
             return state.isEnabled ? "Personal Hotspot Enabled" : nil
         }
         return nil
+    }
+    
+    // MARK: - TableView Delegates
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section != 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -94,6 +104,8 @@ class SettingsViewController: UITableViewController {
             navigationController?.pushViewController(passwordVC, animated: true)
         }
     }
+    
+    // MARK: - Selectors
     
     @objc func toggleChanged(_ sender: Any) {
         state.isEnabled = toggle.isOn
