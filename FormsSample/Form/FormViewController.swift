@@ -32,7 +32,7 @@ struct Observer {
     var update: (Hotspot) -> Void
 }
 
-func hotspotForm(state: Hotspot, change: @escaping ((inout Hotspot) -> Void) -> Void) -> ([Section], Observer) {
+func hotspotForm(state: Hotspot, change: @escaping ((inout Hotspot) -> Void) -> Void, pushViewController: @escaping (UIViewController) -> Void) -> ([Section], Observer) {
     var strongReferences: [Any] = []
     var updates: [(Hotspot) -> Void] = []
     
@@ -69,16 +69,14 @@ func hotspotForm(state: Hotspot, change: @escaping ((inout Hotspot) -> Void) -> 
         passwordCell.detailTextLabel?.text = state.password
     }
     
-//    let passwordDriver = PasswordDriver(password: state.password) { [unowned self] in
-//        self.state.password = $0
-//    }
-//
-//    passwordCell.didSelect = { [unowned self] in
-//        formViewController
-//            .show(
-//                passwordDriver.formViewController,
-//                sender: self)
-//    }
+    let passwordDriver = PasswordDriver(password: state.password) { newPassword in
+        change { $0.password = newPassword}
+    }
+
+    passwordCell.didSelect = {
+        pushViewController(
+            passwordDriver.formViewController)
+    }
     
     let toggleSection = Section(
         cells: [toogleCell],
