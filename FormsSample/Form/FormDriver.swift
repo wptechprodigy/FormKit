@@ -1,5 +1,5 @@
 //
-//  HotspotDriver.swift
+//  FormDriver.swift
 //  FormsSample
 //
 //  Created by waheedCodes on 09/04/2023.
@@ -8,23 +8,29 @@
 
 import UIKit
 
-class HotspotDriver {
+class FormDriver {
     
     // MARK: - Properties
     
     var formViewController: FormViewController!
     var sections: [Section] = []
+    var observer: Observer!
     var state = Hotspot() {
         didSet {
-            sections[0].footerTitle = state.enabledSectionFooterTitle
-            sections[1].cells[0].detailTextLabel?.text = state.password
+            observer.update(state)
             formViewController.reloadSectionFooters()
         }
     }
-    
+
     // MARK: - Initializer
     
-    init() {
+    init(initial state: Hotspot, build: (Hotspot, @escaping ((inout Hotspot) -> Void) -> Void) -> ([Section], Observer)) {
+        self.state = state
+        let (sections, observer) = build(state, { [unowned self] f in
+            f(&self.state)
+        })
+        self.sections = sections
+        self.observer = observer
         formViewController = FormViewController(
             sections: sections,
             title: "Personal Hotspot Settings")

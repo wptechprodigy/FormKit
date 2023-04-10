@@ -8,6 +8,95 @@
 
 import UIKit
 
+final class TargetAction {
+    
+    // MARK: - Properties
+    
+    private let execute: () -> Void
+    
+    // MARK: - Initializer
+    
+    init(_ execute: @escaping () -> Void) {
+        self.execute = execute
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func action(_ sender: Any) {
+        execute()
+    }
+}
+
+struct Observer {
+    var strongReferences: [Any]
+    var update: (Hotspot) -> Void
+}
+
+func hotspotForm(state: Hotspot, change: @escaping ((inout Hotspot) -> Void) -> Void) -> ([Section], Observer) {
+    var strongReferences: [Any] = []
+    var updates: [(Hotspot) -> Void] = []
+    
+    let toogleCell = FormCell(style: .value1, reuseIdentifier: nil)
+    let toggle = UISwitch()
+    toogleCell.textLabel?.text = "Personal Hotspot"
+    toogleCell.contentView.addSubview(toggle)
+    toggle.isOn = state.isEnabled
+    toggle.translatesAutoresizingMaskIntoConstraints = false
+    
+    let toggleTarget = TargetAction {
+        change { $0.isEnabled = toggle.isOn }
+    }
+    strongReferences.append(toggleTarget)
+    updates.append { state in
+        toggle.isOn = state.isEnabled
+    }
+    toggle.addTarget(
+        toggleTarget,
+        action: #selector(TargetAction.action(_:)),
+        for: .valueChanged)
+    toogleCell.contentView.addConstraints([
+        toggle.centerYAnchor.constraint(equalTo: toogleCell.contentView.centerYAnchor),
+        toggle.trailingAnchor.constraint(equalTo: toogleCell.contentView.layoutMarginsGuide.trailingAnchor)
+    ])
+    
+    let passwordCell = FormCell(style: .value1, reuseIdentifier: nil)
+    passwordCell.textLabel?.text = "Password"
+    passwordCell.detailTextLabel?.text = state.password
+    passwordCell.accessoryType = .disclosureIndicator
+    passwordCell.shouldHighlight = true
+    
+    updates.append { state in
+        passwordCell.detailTextLabel?.text = state.password
+    }
+    
+//    let passwordDriver = PasswordDriver(password: state.password) { [unowned self] in
+//        self.state.password = $0
+//    }
+//
+//    passwordCell.didSelect = { [unowned self] in
+//        formViewController
+//            .show(
+//                passwordDriver.formViewController,
+//                sender: self)
+//    }
+    
+    let toggleSection = Section(
+        cells: [toogleCell],
+        footerTitle: state.enabledSectionFooterTitle)
+    updates.append { state in
+        toggleSection.footerTitle = state.enabledSectionFooterTitle
+    }
+    
+    return (
+        [toggleSection, Section(cells: [passwordCell], footerTitle: nil)],
+        Observer(strongReferences: strongReferences) { state in
+            for u in updates {
+                u(state)
+            }
+        }
+    )
+}
+
 class FormViewController: UITableViewController {
     
     // MARK: - Properties
